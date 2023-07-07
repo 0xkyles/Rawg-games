@@ -1,4 +1,4 @@
-import { Box, HStack, Image, Stack, Text } from "@chakra-ui/react";
+import { Image, Stack } from "@chakra-ui/react";
 import logo from "../assets/logo.png";
 import ColorModeSwitch from "./ColorModeSwitch";
 
