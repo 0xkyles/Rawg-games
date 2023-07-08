@@ -5,7 +5,7 @@ export interface Genre {
     name: string;
 }
 
-interface APIGenresResponse {
+export interface APIGenresResponse {
     count: number;
     results: Genre[];
 }

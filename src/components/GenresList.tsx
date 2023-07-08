@@ -1,11 +1,11 @@
 import useGenres from "../hooks/useGenres";
 
 const GenresList = () => {
-    const { genres, isLoading } = useGenres();
+    const { data } = useGenres();
 
     return (
         <ul style={{ listStyle: "none" }}>
-            {genres.map((genre) => (
+            {data?.results.map((genre) => (
                 <li key={genre.id}>{genre.name}</li>
             ))}
         </ul>

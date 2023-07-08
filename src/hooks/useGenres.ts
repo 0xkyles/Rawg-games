@@ -1,29 +1,9 @@
-import { useEffect, useState } from "react";
-import genreService, { Genre } from "../services/genreService";
-import { CanceledError } from "axios";
+import genreService, { APIGenresResponse } from "../services/genreService";
+import useData from "./useData";
 
-const useGenres = () => {
-    const [genres, setGenres] = useState<Genre[]>([]);
-    const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-
-    useEffect(() => {
-        setIsLoading(true);
-
-        const { req, cancel } = genreService.getAll();
-        req.then((data) => {
-            setGenres(data.results);
-            setIsLoading(false);
-        }).catch((err) => {
-            if (err instanceof CanceledError) return;
-            setError(err.message);
-            setIsLoading(false);
-        });
-
-        return () => cancel();
-    }, []);
-
-    return { genres, error, isLoading };
-};
+const useGenres = () =>
+    useData<APIGenresResponse>({
+        requestFunction: genreService.getAll,
+    });
 
 export default useGenres;

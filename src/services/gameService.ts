@@ -14,7 +14,7 @@ export interface Game {
     metacritic: number;
 }
 
-interface APIGamesResponse {
+export interface APIGamesResponse {
     count: number;
     results: Game[];
 }
