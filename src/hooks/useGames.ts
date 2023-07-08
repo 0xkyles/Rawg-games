@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import gameService, { Game } from "../services/gameService";
+import { CanceledError } from "axios";
 
 const useGames = () => {
     const [games, setGames] = useState<Game[]>([]);
@@ -14,12 +15,13 @@ const useGames = () => {
             setGames(data.results);
             setIsLoading(false);
         }).catch((err) => {
+            if (err instanceof CanceledError) return;
             setError(err.message);
             setIsLoading(false);
         });
 
         return () => cancel();
-    });
+    }, []);
 
     return { games, error, isLoading, setGames, setError };
 };

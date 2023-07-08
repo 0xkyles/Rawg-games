@@ -8,7 +8,8 @@ const Navbar = () => {
             direction="row"
             align="center"
             justifyContent="space-between"
-            padding="10px"
+            paddingX="20px"
+            paddingY="10px"
         >
             <Image src={logo} alt="Logo" boxSize="60px" rounded="full" />
             <ColorModeSwitch />
