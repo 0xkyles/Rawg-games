@@ -4,8 +4,8 @@ import { CanceledError } from "axios";
 
 const useGames = () => {
     const [games, setGames] = useState<Game[]>([]);
-    const [error, setError] = useState<string>("");
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         setIsLoading(true);
