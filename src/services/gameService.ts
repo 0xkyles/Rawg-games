@@ -1,3 +1,4 @@
+import { AxiosRequestConfig } from "axios";
 import api from "./api";
 
 export interface Platform {
@@ -20,10 +21,13 @@ export interface APIGamesResponse {
 }
 
 class GameService {
-    getAll() {
+    getAll(requestConfig?: AxiosRequestConfig) {
         const controller = new AbortController();
         const req = api
-            .get<APIGamesResponse>("/games", { signal: controller.signal })
+            .get<APIGamesResponse>("/games", {
+                signal: controller.signal,
+                ...requestConfig,
+            })
             .then((res) => res.data);
 
         return { req, cancel: () => controller.abort() };
