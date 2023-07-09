@@ -10,13 +10,10 @@ const useGames = (gameQuery: GameQuery) =>
                     genres: gameQuery.genre?.id,
                     parent_platforms: gameQuery.platform?.id,
                     ordering: gameQuery.sortOrder,
+                    search: gameQuery.search,
                 },
             }),
-        dependancies: [
-            gameQuery.genre?.id,
-            gameQuery.platform?.id,
-            gameQuery.sortOrder,
-        ],
+        dependancies: [gameQuery],
     });
 
 export default useGames;

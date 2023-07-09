@@ -3,7 +3,11 @@ import logo from "../assets/logo.png";
 import ColorModeSwitch from "./ColorModeSwitch";
 import SearchInput from "./SearchInput";
 
-const Navbar = () => {
+interface Props {
+    onSearch: (search: string) => void;
+}
+
+const Navbar = ({ onSearch }: Props) => {
     return (
         <Stack
             direction="row"
@@ -13,7 +17,7 @@ const Navbar = () => {
             paddingY="10px"
         >
             <Image src={logo} alt="Logo" boxSize="60px" rounded="full" />
-            <SearchInput />
+            <SearchInput onSearch={onSearch} />
             <ColorModeSwitch />
         </Stack>
     );
