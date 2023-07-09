@@ -1,6 +1,7 @@
 import { Image, Stack } from "@chakra-ui/react";
 import logo from "../assets/logo.png";
 import ColorModeSwitch from "./ColorModeSwitch";
+import SearchInput from "./SearchInput";
 
 const Navbar = () => {
     return (
@@ -12,6 +13,7 @@ const Navbar = () => {
             paddingY="10px"
         >
             <Image src={logo} alt="Logo" boxSize="60px" rounded="full" />
+            <SearchInput />
             <ColorModeSwitch />
         </Stack>
     );
