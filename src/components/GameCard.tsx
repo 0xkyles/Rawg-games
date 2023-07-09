@@ -1,8 +1,7 @@
-import { CardBody, HStack, Heading, Image, Text } from "@chakra-ui/react";
+import { Card, CardBody, HStack, Heading, Image, Text } from "@chakra-ui/react";
 import { Game } from "../services/gameService";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
-import GameCardComponent from "./GameCardComponent";
 
 interface Props {
     game: Game;
@@ -10,7 +9,7 @@ interface Props {
 
 const GameCard = ({ game }: Props) => {
     return (
-        <GameCardComponent>
+        <Card height="100%">
             <Image
                 height="200px"
                 width="full"
@@ -27,7 +26,7 @@ const GameCard = ({ game }: Props) => {
                 </HStack>
                 <Heading size="lg">{game.name}</Heading>
             </CardBody>
-        </GameCardComponent>
+        </Card>
     );
 };
 
