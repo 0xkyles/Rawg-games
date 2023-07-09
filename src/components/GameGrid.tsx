@@ -18,13 +18,13 @@ const GameGrid = ({ selectedGenre }: Props) => {
             <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing="20px">
                 {isLoading &&
                     Array.from({ length: 8 }, (_, index) => (
-                        <GameCardContainer>
-                            <GameCardSkeleton key={index} />
+                        <GameCardContainer key={index}>
+                            <GameCardSkeleton />
                         </GameCardContainer>
                     ))}
                 {data?.results.map((game) => (
-                    <GameCardContainer>
-                        <GameCard key={game.id} game={game} />
+                    <GameCardContainer key={game.id}>
+                        <GameCard game={game} />
                     </GameCardContainer>
                 ))}
             </SimpleGrid>
