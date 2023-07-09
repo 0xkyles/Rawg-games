@@ -1,11 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 import api from "./api";
-
-export interface Platform {
-    id: number;
-    slug: string;
-    name: string;
-}
+import { Platform } from "./platformService";
 
 export interface Game {
     id: number;
