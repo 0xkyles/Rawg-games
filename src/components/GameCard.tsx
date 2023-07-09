@@ -1,7 +1,8 @@
-import { Card, CardBody, HStack, Heading, Image, Text } from "@chakra-ui/react";
+import { Card, CardBody, HStack, Heading, Image } from "@chakra-ui/react";
 import { Game } from "../services/gameService";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
+import placeHolderImage from "../assets/placeholder.png";
 
 interface Props {
     game: Game;
@@ -14,7 +15,7 @@ const GameCard = ({ game }: Props) => {
                 height="200px"
                 width="full"
                 objectFit="cover"
-                src={game.background_image}
+                src={game.background_image || placeHolderImage}
                 alt={game.name + "'s game image."}
             />
             <CardBody>
