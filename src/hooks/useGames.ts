@@ -9,9 +9,14 @@ const useGames = (gameQuery: GameQuery) =>
                 params: {
                     genres: gameQuery.genre?.id,
                     parent_platforms: gameQuery.platform?.id,
+                    ordering: gameQuery.sortOrder,
                 },
             }),
-        dependancies: [gameQuery.genre?.id, gameQuery.platform?.id],
+        dependancies: [
+            gameQuery.genre?.id,
+            gameQuery.platform?.id,
+            gameQuery.sortOrder,
+        ],
     });
 
 export default useGames;
