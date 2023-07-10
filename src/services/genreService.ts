@@ -6,20 +6,17 @@ export interface Genre {
     image_background: string;
 }
 
+export const CACHE_KEY_GENRE = ["genres"];
+
 export interface APIGenresResponse {
     count: number;
     results: Genre[];
 }
 
 class GenreService {
-    getAll() {
-        const controller = new AbortController();
-        const req = api
-            .get<APIGenresResponse>("/genres", { signal: controller.signal })
-            .then((res) => res.data);
-
-        return { req, cancel: () => controller.abort() };
-    }
+    getAll = () => {
+        return api.get<APIGenresResponse>("/genres").then((res) => res.data);
+    };
 }
 
 export default new GenreService();

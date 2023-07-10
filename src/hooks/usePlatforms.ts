@@ -1,11 +1,13 @@
+import { useQuery } from "@tanstack/react-query";
 import platformService, {
-    APIPlatformsResponse,
+    CACHE_KEY_PLATFORM,
 } from "../services/platformService";
-import useData from "./useData";
 
 const usePlatforms = () =>
-    useData<APIPlatformsResponse>({
-        requestFunction: () => platformService.getAll(),
+    useQuery({
+        queryKey: CACHE_KEY_PLATFORM,
+        queryFn: platformService.getAll,
+        staleTime: 24 * 60 * 60 * 1000,
     });
 
 export default usePlatforms;

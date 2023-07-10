@@ -8,30 +8,27 @@ interface Params<APIResponse> {
 
 const useData = <APIResponse>({
     requestFunction,
-    dependancies,
+    dependancies = [],
 }: Params<APIResponse>) => {
     const [data, setData] = useState<APIResponse>();
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(
-        () => {
-            setIsLoading(true);
+    useEffect(() => {
+        setIsLoading(true);
 
-            const { req, cancel } = requestFunction();
-            req.then((data) => {
-                setData(data);
-                setIsLoading(false);
-            }).catch((err) => {
-                if (err instanceof CanceledError) return;
-                setError(err.message);
-                setIsLoading(false);
-            });
+        const { req, cancel } = requestFunction();
+        req.then((data) => {
+            setData(data);
+            setIsLoading(false);
+        }).catch((err) => {
+            if (err instanceof CanceledError) return;
+            setError(err.message);
+            setIsLoading(false);
+        });
 
-            return () => cancel();
-        },
-        dependancies ? [...dependancies] : []
-    );
+        return () => cancel();
+    }, [...dependancies]);
 
     return { data, error, isLoading };
 };
