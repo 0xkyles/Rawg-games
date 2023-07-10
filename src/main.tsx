@@ -16,6 +16,20 @@ const theme = extendTheme({
         heading: `'Open Sans', sans-serif`,
         body: `'Plus Jakarta Sans', sans-serif`,
     },
+    colors: {
+        gray: {
+            50: "#f9f9f9",
+            100: "#ededed",
+            200: "#d3d3d3",
+            300: "#a6a6a6",
+            400: "#8c8c8c",
+            500: "#898989",
+            600: "#6c6c6c",
+            700: "#404040",
+            800: "#121212",
+            900: "#120b0d",
+        },
+    },
 });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
