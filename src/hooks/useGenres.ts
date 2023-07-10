@@ -1,9 +1,5 @@
-import genreService, { APIGenresResponse } from "../services/genreService";
-import useData from "./useData";
+import { genres } from "../data/genres";
 
-const useGenres = () =>
-    useData<APIGenresResponse>({
-        requestFunction: genreService.getAll,
-    });
+const useGenres = () => ({ data: genres, isLoading: false });
 
 export default useGenres;
