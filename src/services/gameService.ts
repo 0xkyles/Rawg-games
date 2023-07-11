@@ -12,15 +12,14 @@ export interface Game {
 
 export interface APIGamesResponse {
     count: number;
+    next: string | null;
     results: Game[];
 }
 
 class GameService {
     getAll(requestConfig?: AxiosRequestConfig) {
         return api
-            .get<APIGamesResponse>("/games", {
-                ...requestConfig,
-            })
+            .get<APIGamesResponse>("/games", requestConfig)
             .then((res) => res.data);
     }
 }
