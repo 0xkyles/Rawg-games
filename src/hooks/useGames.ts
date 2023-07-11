@@ -1,10 +1,11 @@
+import { useQuery } from "@tanstack/react-query";
 import { GameQuery } from "../App";
 import gameService, { APIGamesResponse } from "../services/gameService";
-import useData from "./useData";
 
 const useGames = (gameQuery: GameQuery) =>
-    useData<APIGamesResponse>({
-        requestFunction: () =>
+    useQuery<APIGamesResponse, Error>({
+        queryKey: ["games", gameQuery],
+        queryFn: () =>
             gameService.getAll({
                 params: {
                     genres: gameQuery.genre?.id,
@@ -13,7 +14,6 @@ const useGames = (gameQuery: GameQuery) =>
                     search: gameQuery.search,
                 },
             }),
-        dependancies: [gameQuery],
     });
 
 export default useGames;

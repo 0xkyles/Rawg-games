@@ -12,7 +12,7 @@ interface Props {
 const GameGrid = ({ gameQuery }: Props) => {
     const { data, error, isLoading } = useGames(gameQuery);
 
-    if (error) return <Text>{error}</Text>;
+    if (error) return <Text>{error.message}</Text>;
 
     return (
         <>

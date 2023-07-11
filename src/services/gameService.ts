@@ -17,15 +17,11 @@ export interface APIGamesResponse {
 
 class GameService {
     getAll(requestConfig?: AxiosRequestConfig) {
-        const controller = new AbortController();
-        const req = api
+        return api
             .get<APIGamesResponse>("/games", {
-                signal: controller.signal,
                 ...requestConfig,
             })
             .then((res) => res.data);
-
-        return { req, cancel: () => controller.abort() };
     }
 }
 
