@@ -7,9 +7,9 @@ import {
     ListItem,
     Text,
 } from "@chakra-ui/react";
-import useGenres from "../hooks/useGenres";
+import useGenres from "../../hooks/useGenres";
 import GenreSkeleton from "./GenreSkeleton";
-import { Genre } from "../services/genreService";
+import { Genre } from "../../services/genreService";
 
 interface Props {
     onSelectGenre: (genre: Genre) => void;
