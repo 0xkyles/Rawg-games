@@ -24,11 +24,7 @@ const GameGrid = ({ gameQuery }: Props) => {
 
     return (
         <>
-            <SimpleGrid
-                columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-                spacing="20px"
-                marginY="10px"
-            >
+            <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing="20px">
                 {isLoading &&
                     Array.from({ length: 8 }, (_, index) => (
                         <GameCardContainer key={index}>

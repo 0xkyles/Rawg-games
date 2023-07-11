@@ -1,17 +1,16 @@
-import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
-import Navbar from "./components/navigation/Navbar";
-import GameGrid from "./components/games/GameGrid";
-import GenresList from "./components/genres/GenresList";
-import { Genre } from "./services/genreService";
+import { Button, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import { useState } from "react";
 import PlatformMenu from "./components/PlatformMenu";
-import { Platform } from "./services/platformService";
 import SortMenu from "./components/SortMenu";
+import GameGrid from "./components/games/GameGrid";
 import GameHeading from "./components/games/GameHeading";
+import GenresList from "./components/genres/GenresList";
+import Navbar from "./components/navigation/Navbar";
+import { RxCross2 } from "react-icons/rx";
 
 export interface GameQuery {
-    genre: Genre | null;
-    platform: Platform | null;
+    genreId?: number;
+    platformId?: number;
     sortOrder: string;
     search: string;
 }
@@ -41,20 +40,20 @@ function App() {
                 <Show above="lg">
                     <GridItem area="aside" padding="20px">
                         <GenresList
-                            selectedGenre={gameQuery.genre}
-                            onSelectGenre={(genre) =>
-                                setGameQuery({ ...gameQuery, genre })
+                            selectedGenreId={gameQuery.genreId}
+                            onSelectGenre={(genreId) =>
+                                setGameQuery({ ...gameQuery, genreId })
                             }
                         />
                     </GridItem>
                 </Show>
                 <GridItem area="main" padding="20px">
                     <GameHeading gameQuery={gameQuery} />
-                    <HStack spacing="10px">
+                    <HStack spacing="10px" marginBottom="20px">
                         <PlatformMenu
-                            selectedPlatform={gameQuery.platform}
-                            onSelectPlatform={(platform) =>
-                                setGameQuery({ ...gameQuery, platform })
+                            selectedPlatformId={gameQuery.platformId}
+                            onSelectPlatform={(platformId) =>
+                                setGameQuery({ ...gameQuery, platformId })
                             }
                         />
                         <SortMenu
@@ -63,6 +62,21 @@ function App() {
                                 setGameQuery({ ...gameQuery, sortOrder })
                             }
                         />
+                        {(gameQuery.genreId || gameQuery.platformId) && (
+                            <Button
+                                variant="outline"
+                                leftIcon={<RxCross2 />}
+                                onClick={() =>
+                                    setGameQuery({
+                                        ...gameQuery,
+                                        genreId: undefined,
+                                        platformId: undefined,
+                                    })
+                                }
+                            >
+                                Reset Filter
+                            </Button>
+                        )}
                     </HStack>
                     <GameGrid gameQuery={gameQuery} />
                 </GridItem>

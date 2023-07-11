@@ -19,6 +19,12 @@ class PlatformService {
             .get<APIPlatformsResponse>("/platforms/lists/parents")
             .then((res) => res.data);
     };
+
+    get = (genreId: number) => {
+        return api
+            .get<Platform>("/platforms/" + genreId)
+            .then((res) => res.data);
+    };
 }
 
 export default new PlatformService();
