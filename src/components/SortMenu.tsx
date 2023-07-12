@@ -1,10 +1,6 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronBarDown } from "react-icons/bs";
-
-interface Props {
-    onSelectSortOrder: (sortOrder: string) => void;
-    sortOrder: string;
-}
+import useGameQuery from "./stores/gameQueryStore";
 
 const sortOrders = [
     { value: "", label: "Relevance" },
@@ -15,7 +11,11 @@ const sortOrders = [
     { value: "-rating", label: "Average rating" },
 ];
 
-const SortMenu = ({ onSelectSortOrder, sortOrder }: Props) => {
+const SortMenu = () => {
+    const { sortOrder, setSortOrder } = useGameQuery((s) => ({
+        sortOrder: s.gameQuery.sortOrder,
+        setSortOrder: s.setSortOrder,
+    }));
     const currentSortOrder = sortOrders.find((s) => s.value === sortOrder);
 
     return (
@@ -27,7 +27,7 @@ const SortMenu = ({ onSelectSortOrder, sortOrder }: Props) => {
                 {sortOrders.map((sortOrder) => (
                     <MenuItem
                         key={sortOrder.value}
-                        onClick={() => onSelectSortOrder(sortOrder.value)}
+                        onClick={() => setSortOrder(sortOrder.value)}
                     >
                         {sortOrder.label}
                     </MenuItem>

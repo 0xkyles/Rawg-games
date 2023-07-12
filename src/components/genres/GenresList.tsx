@@ -10,14 +10,14 @@ import {
 import useGenres from "../../hooks/useGenres";
 import GenreSkeleton from "./GenreSkeleton";
 import { Genre } from "../../services/genreService";
+import useGameQuery from "../stores/gameQueryStore";
 
-interface Props {
-    onSelectGenre: (genreId: Genre["id"]) => void;
-    selectedGenreId?: Genre["id"];
-}
-
-const GenresList = ({ onSelectGenre, selectedGenreId }: Props) => {
+const GenresList = () => {
     const { data, isLoading } = useGenres();
+    const { selectedGenreId, setGenreId } = useGameQuery((s) => ({
+        selectedGenreId: s.gameQuery.genreId,
+        setGenreId: s.setGenreId,
+    }));
 
     return (
         <>
@@ -48,7 +48,7 @@ const GenresList = ({ onSelectGenre, selectedGenreId }: Props) => {
                                 }
                                 whiteSpace="normal"
                                 textAlign="left"
-                                onClick={() => onSelectGenre(genre.id)}
+                                onClick={() => setGenreId(genre.id)}
                                 variant="link"
                                 size={
                                     selectedGenreId === genre.id ? "md" : "sm"

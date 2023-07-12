@@ -3,14 +3,11 @@ import useGames from "../../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
-import { GameQuery } from "../../App";
 import React from "react";
+import useGameQuery from "../stores/gameQueryStore";
 
-interface Props {
-    gameQuery: GameQuery;
-}
-
-const GameGrid = ({ gameQuery }: Props) => {
+const GameGrid = () => {
+    const gameQuery = useGameQuery((s) => s.gameQuery);
     const {
         data,
         error,

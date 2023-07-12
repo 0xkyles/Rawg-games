@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { GameQuery } from "../App";
 import gameService, { APIGamesResponse } from "../services/gameService";
+import { GameQuery } from "../components/stores/gameQueryStore";
 
 const useGames = (gameQuery: GameQuery) =>
     useInfiniteQuery<APIGamesResponse, Error>({
