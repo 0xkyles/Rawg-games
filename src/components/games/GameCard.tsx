@@ -3,6 +3,7 @@ import { Game } from "../../services/gameService";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import placeHolderImage from "../../assets/placeholder.png";
+import { Link } from "react-router-dom";
 
 interface Props {
     game: Game;
@@ -25,7 +26,9 @@ const GameCard = ({ game }: Props) => {
                     />
                     <CriticScore score={game.metacritic} />
                 </HStack>
-                <Heading size="lg">{game.name}</Heading>
+                <Link to={`games/${game.slug}`} state={{ id: game.id }}>
+                    <Heading size="lg">{game.name}</Heading>
+                </Link>
             </CardBody>
         </Card>
     );
