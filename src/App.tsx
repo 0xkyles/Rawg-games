@@ -7,12 +7,16 @@ import GenresList from "./components/genres/GenresList";
 import Navbar from "./components/navigation/Navbar";
 import { RxCross2 } from "react-icons/rx";
 import useGameQuery from "./components/stores/gameQueryStore";
+import { shallow } from "zustand/shallow";
 
 function App() {
-    const { gameQuery, reset } = useGameQuery((s) => ({
-        gameQuery: s.gameQuery,
-        reset: s.reset,
-    }));
+    const { gameQuery, reset } = useGameQuery(
+        (s) => ({
+            gameQuery: s.gameQuery,
+            reset: s.reset,
+        }),
+        shallow
+    );
 
     return (
         <div className="App">

@@ -5,19 +5,21 @@ import {
     Image,
     List,
     ListItem,
-    Text,
 } from "@chakra-ui/react";
 import useGenres from "../../hooks/useGenres";
-import GenreSkeleton from "./GenreSkeleton";
-import { Genre } from "../../services/genreService";
 import useGameQuery from "../stores/gameQueryStore";
+import GenreSkeleton from "./GenreSkeleton";
+import { shallow } from "zustand/shallow";
 
 const GenresList = () => {
     const { data, isLoading } = useGenres();
-    const { selectedGenreId, setGenreId } = useGameQuery((s) => ({
-        selectedGenreId: s.gameQuery.genreId,
-        setGenreId: s.setGenreId,
-    }));
+    const { selectedGenreId, setGenreId } = useGameQuery(
+        (s) => ({
+            selectedGenreId: s.gameQuery.genreId,
+            setGenreId: s.setGenreId,
+        }),
+        shallow
+    );
 
     return (
         <>
