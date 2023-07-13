@@ -7,7 +7,7 @@ import {
     ListItem,
 } from "@chakra-ui/react";
 import useGenres from "../../hooks/useGenres";
-import useGameQuery from "../stores/gameQueryStore";
+import useGameQuery from "../../stores/gameQueryStore";
 import GenreSkeleton from "./GenreSkeleton";
 import { shallow } from "zustand/shallow";
 

@@ -4,7 +4,7 @@ import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 import React from "react";
-import useGameQuery from "../stores/gameQueryStore";
+import useGameQuery from "../../stores/gameQueryStore";
 
 const GameGrid = () => {
     const gameQuery = useGameQuery((s) => s.gameQuery);

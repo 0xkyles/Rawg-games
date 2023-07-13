@@ -16,7 +16,7 @@ const config: ThemeConfig = {
 const theme = extendTheme({
     config,
     fonts: {
-        heading: `'Open Sans', sans-serif`,
+        heading: `'Plus Jakarta Sans', sans-serif`,
         body: `'Plus Jakarta Sans', sans-serif`,
     },
     colors: {

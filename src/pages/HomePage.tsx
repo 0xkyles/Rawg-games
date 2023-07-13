@@ -5,7 +5,7 @@ import SortMenu from "../components/SortMenu";
 import GameGrid from "../components/games/GameGrid";
 import GameHeading from "../components/games/GameHeading";
 import GenresList from "../components/genres/GenresList";
-import useGameQuery from "../components/stores/gameQueryStore";
+import useGameQuery from "../stores/gameQueryStore";
 
 const HomePage = () => {
     const selectedGenreId = useGameQuery((s) => s.gameQuery.genreId);
