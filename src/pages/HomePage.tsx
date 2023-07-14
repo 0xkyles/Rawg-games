@@ -24,11 +24,11 @@ const HomePage = () => {
             }}
         >
             <Show above="lg">
-                <GridItem area="aside" padding="20px">
+                <GridItem area="aside">
                     <GenresList />
                 </GridItem>
             </Show>
-            <GridItem area="main" padding="20px">
+            <GridItem area="main">
                 <GameHeading />
                 <HStack spacing="10px" marginBottom="20px">
                     <PlatformMenu />

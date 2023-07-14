@@ -26,9 +26,9 @@ const GameCard = ({ game }: Props) => {
                     />
                     <CriticScore score={game.metacritic} />
                 </HStack>
-                <Link to={`games/${game.slug}`} state={{ id: game.id }}>
-                    <Heading size="lg">{game.name}</Heading>
-                </Link>
+                <Heading size="lg">
+                    <Link to={`games/${game.slug}`}>{game.name}</Link>
+                </Heading>
             </CardBody>
         </Card>
     );

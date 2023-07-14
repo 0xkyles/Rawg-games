@@ -1,6 +1,8 @@
 import { AxiosRequestConfig } from "axios";
 import api from "./api";
 import { Platform } from "./platformService";
+import { Genre } from "./genreService";
+import APIResponse from "../entites/APIResponse";
 
 export const CACHE_GAME_KEY = ["games"];
 
@@ -13,17 +15,27 @@ export interface Game {
     slug: string;
 }
 
-export interface APIGamesResponse {
-    count: number;
-    next: string | null;
-    results: Game[];
+export interface APIGamesResponse extends APIResponse<Game> {}
+
+interface Trailer {
+    id: number;
+    name: string;
+    preview: string;
+    data: {
+        480: string;
+        max: string;
+    };
 }
 
-interface APIGameResponse {
+interface Publishers {
+    id: number;
     name: string;
-    slug: string;
+}
+
+export interface GameDetails extends Game {
     description_raw: string;
-    metacritic: number;
+    genres: Genre[];
+    publishers: Publishers[];
 }
 
 class GameService {
@@ -33,9 +45,13 @@ class GameService {
             .then((res) => res.data);
     }
 
-    get = (gameId: number) => {
+    get = (gameId: number | string) => {
+        return api.get<GameDetails>("/games/" + gameId).then((res) => res.data);
+    };
+
+    getTrailer = (gameId: number | string) => {
         return api
-            .get<APIGameResponse>("/games/" + gameId)
+            .get<APIResponse<Trailer>>("/games/" + gameId + "/movies")
             .then((res) => res.data);
     };
 }

@@ -1,7 +1,7 @@
 import gameService, { CACHE_GAME_KEY } from "../services/gameService";
 import { useQuery } from "@tanstack/react-query";
 
-const useGame = (gameId: number) =>
+const useGame = (gameId: number | string) =>
     useQuery({
         queryKey: [...CACHE_GAME_KEY, gameId],
         queryFn: () => gameService.get(gameId),

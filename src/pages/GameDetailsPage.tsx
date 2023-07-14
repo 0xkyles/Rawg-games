@@ -1,22 +1,42 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
-import { useLocation } from "react-router-dom";
+import {
+    Box,
+    Grid,
+    GridItem,
+    Heading,
+    SimpleGrid,
+    Text,
+} from "@chakra-ui/react";
+import { useParams } from "react-router-dom";
 import useGame from "../hooks/useGame";
+import ExpandableText from "../components/ExpandableText";
+import GameAttributes from "../components/games/GameAttributes";
+import GameTrailer from "../components/games/GameTrailer";
 
 const GameDetailsPage = () => {
-    const location = useLocation();
-    const gameId = location.state.id;
+    const { id } = useParams();
+    const { data: game, isLoading, error } = useGame(id as string);
 
-    const { data: game, isLoading } = useGame(gameId);
-
-    if (isLoading) return <Heading>Loading...</Heading>;
+    if (error) throw error;
+    if (isLoading) return <Text>Loading...</Text>;
 
     return (
         <>
-            <Box padding="20px">
-                <Heading>{game?.name}</Heading>
-                <Text>{game?.slug}</Text>
-                <Text>{game?.description_raw}</Text>
-            </Box>
+            <Heading marginBottom="10px">{game?.name}</Heading>
+            <Grid templateColumns="repeat(4, 1fr)" gap="20px">
+                <GridItem colSpan={3}>
+                    <ExpandableText
+                        fontSize="14px"
+                        lineHeight="6"
+                        marginBottom="20px"
+                    >
+                        {game?.description_raw!}
+                    </ExpandableText>
+                    <GameAttributes gameDetails={game!} />
+                </GridItem>
+                <GridItem colSpan={1}>
+                    <GameTrailer gameId={game!.id} />
+                </GridItem>
+            </Grid>
         </>
     );
 };
