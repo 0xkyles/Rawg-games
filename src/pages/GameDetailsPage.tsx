@@ -11,6 +11,7 @@ import useGame from "../hooks/useGame";
 import ExpandableText from "../components/ExpandableText";
 import GameAttributes from "../components/games/GameAttributes";
 import GameTrailer from "../components/games/GameTrailer";
+import GameScreenshots from "../components/games/GameScreenshots";
 
 const GameDetailsPage = () => {
     const { id } = useParams();
@@ -21,7 +22,6 @@ const GameDetailsPage = () => {
 
     return (
         <>
-            <Heading marginBottom="10px">{game?.name}</Heading>
             <Grid
                 templateColumns={{
                     base: "1fr",
@@ -30,6 +30,7 @@ const GameDetailsPage = () => {
                 gap="20px"
             >
                 <GridItem>
+                    <Heading marginBottom="10px">{game?.name}</Heading>
                     <ExpandableText
                         fontSize="14px"
                         lineHeight="6"
@@ -40,7 +41,15 @@ const GameDetailsPage = () => {
                     <GameAttributes gameDetails={game!} />
                 </GridItem>
                 <GridItem>
-                    <GameTrailer gameId={game!.id} />
+                    <Box
+                        width="480px"
+                        rounded="md"
+                        overflow="hidden"
+                        marginBottom="10px"
+                    >
+                        <GameTrailer gameId={game!.id} />
+                    </Box>
+                    <GameScreenshots gameId={game!.id} />
                 </GridItem>
             </Grid>
         </>

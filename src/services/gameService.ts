@@ -17,6 +17,13 @@ export interface Game {
 
 export interface APIGamesResponse extends APIResponse<Game> {}
 
+interface Screenshot {
+    id: number;
+    image: string;
+    width: number;
+    height: number;
+}
+
 interface Trailer {
     id: number;
     name: string;
@@ -52,6 +59,12 @@ class GameService {
     getTrailer = (gameId: number | string) => {
         return api
             .get<APIResponse<Trailer>>("/games/" + gameId + "/movies")
+            .then((res) => res.data);
+    };
+
+    getScreenShots = (gameId: number) => {
+        return api
+            .get<APIResponse<Screenshot>>("/games/" + gameId + "/screenshots")
             .then((res) => res.data);
     };
 }

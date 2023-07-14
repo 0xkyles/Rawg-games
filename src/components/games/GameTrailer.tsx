@@ -13,13 +13,11 @@ const GameTrailer = ({ gameId }: Props) => {
 
     const trailer = trailers!.results?.[0];
     return trailer ? (
-        <Box boxSize="480px" rounded="md" overflow="hidden">
-            <video
-                src={trailer.data[480]}
-                poster={trailer.preview}
-                controls
-            ></video>
-        </Box>
+        <video
+            src={trailer.data[480]}
+            poster={trailer.preview}
+            controls
+        ></video>
     ) : null;
 };
 
