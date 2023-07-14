@@ -25,7 +25,7 @@ const GameDetailsPage = () => {
             <Grid
                 templateColumns={{
                     base: "1fr",
-                    lg: "1fr 480px",
+                    lg: "1fr 40%",
                 }}
                 gap="20px"
             >
@@ -41,12 +41,7 @@ const GameDetailsPage = () => {
                     <GameAttributes gameDetails={game!} />
                 </GridItem>
                 <GridItem>
-                    <Box
-                        width="480px"
-                        rounded="md"
-                        overflow="hidden"
-                        marginBottom="10px"
-                    >
+                    <Box rounded="md" overflow="hidden" marginBottom="10px">
                         <GameTrailer gameId={game!.id} />
                     </Box>
                     <GameScreenshots gameId={game!.id} />
