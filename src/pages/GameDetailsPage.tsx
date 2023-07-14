@@ -22,8 +22,14 @@ const GameDetailsPage = () => {
     return (
         <>
             <Heading marginBottom="10px">{game?.name}</Heading>
-            <Grid templateColumns="repeat(4, 1fr)" gap="20px">
-                <GridItem colSpan={3}>
+            <Grid
+                templateColumns={{
+                    base: "1fr",
+                    lg: "1fr 480px",
+                }}
+                gap="20px"
+            >
+                <GridItem>
                     <ExpandableText
                         fontSize="14px"
                         lineHeight="6"
@@ -33,7 +39,7 @@ const GameDetailsPage = () => {
                     </ExpandableText>
                     <GameAttributes gameDetails={game!} />
                 </GridItem>
-                <GridItem colSpan={1}>
+                <GridItem>
                     <GameTrailer gameId={game!.id} />
                 </GridItem>
             </Grid>
