@@ -1,3 +1,4 @@
+import APIResponse from "../entites/APIResponse";
 import api from "./api";
 
 export const CACHE_KEY_PLATFORM = ["platforms"];
@@ -8,21 +9,20 @@ export interface Platform {
     slug: string;
 }
 
-export interface APIPlatformsResponse {
-    count: number;
-    results: Platform[];
-}
+export interface APIPlatformsResponse  extends APIResponse<Platform> {}
 
 class PlatformService {
+    private url = "platforms";
+
     getAll = () => {
         return api
-            .get<APIPlatformsResponse>("/platforms/lists/parents")
+            .get<APIPlatformsResponse>(this.url + "/lists/parents")
             .then((res) => res.data);
     };
 
     get = (genreId: number) => {
         return api
-            .get<Platform>("/platforms/" + genreId)
+            .get<Platform>(this.url + "/" + genreId)
             .then((res) => res.data);
     };
 }

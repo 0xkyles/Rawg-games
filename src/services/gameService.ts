@@ -46,25 +46,27 @@ export interface GameDetails extends Game {
 }
 
 class GameService {
+    private url = "/games";
+
     getAll(requestConfig?: AxiosRequestConfig) {
         return api
-            .get<APIGamesResponse>("/games", requestConfig)
+            .get<APIGamesResponse>(this.url, requestConfig)
             .then((res) => res.data);
     }
 
     get = (gameId: number | string) => {
-        return api.get<GameDetails>("/games/" + gameId).then((res) => res.data);
+        return api.get<GameDetails>(this.url + "/" + gameId).then((res) => res.data);
     };
 
     getTrailer = (gameId: number | string) => {
         return api
-            .get<APIResponse<Trailer>>("/games/" + gameId + "/movies")
+            .get<APIResponse<Trailer>>(this.url + "/" + gameId + "/movies")
             .then((res) => res.data);
     };
 
     getScreenShots = (gameId: number) => {
         return api
-            .get<APIResponse<Screenshot>>("/games/" + gameId + "/screenshots")
+            .get<APIResponse<Screenshot>>(this.url + "/" + gameId + "/screenshots")
             .then((res) => res.data);
     };
 }
