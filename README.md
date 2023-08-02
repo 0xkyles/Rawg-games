@@ -16,3 +16,8 @@
    ```bash
    docker-compose up -d
    ```
+
+4. The app listens on port 3000:
+   ```bash
+   Go to localhost:3000
+   ```
