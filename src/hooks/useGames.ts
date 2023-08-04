@@ -1,12 +1,13 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import gameService, {
-    APIGamesResponse,
     CACHE_GAME_KEY,
+    Game,
 } from "../services/gameService";
 import { GameQuery } from "../stores/gameQueryStore";
+import APIResponse from "../entites/APIResponse";
 
 const useGames = (gameQuery: GameQuery) =>
-    useInfiniteQuery<APIGamesResponse, Error>({
+    useInfiniteQuery<APIResponse<Game>, Error>({
         queryKey: [...CACHE_GAME_KEY, gameQuery],
         queryFn: ({ pageParam }) =>
             gameService.getAll({

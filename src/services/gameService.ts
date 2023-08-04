@@ -15,8 +15,6 @@ export interface Game {
     slug: string;
 }
 
-export interface APIGamesResponse extends APIResponse<Game> {}
-
 interface Screenshot {
     id: number;
     image: string;
@@ -50,7 +48,7 @@ class GameService {
 
     getAll(requestConfig?: AxiosRequestConfig) {
         return api
-            .get<APIGamesResponse>(this.url, requestConfig)
+            .get<APIResponse<Game>>(this.url, requestConfig)
             .then((res) => res.data);
     }
 

@@ -1,4 +1,5 @@
 import APIResponse from "../entites/APIResponse";
+
 import api from "./api";
 
 export interface Genre {
@@ -9,13 +10,11 @@ export interface Genre {
 
 export const CACHE_KEY_GENRE = ["genres"];
 
-export interface APIGenresResponse extends APIResponse<Genre> {}
-
 class GenreService {
     private url = "/genres";
 
     getAll = () => {
-        return api.get<APIGenresResponse>(this.url).then((res) => res.data);
+        return api.get<APIResponse<Genre>>(this.url).then((res) => res.data);
     };
 }
 

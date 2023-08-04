@@ -9,14 +9,12 @@ export interface Platform {
     slug: string;
 }
 
-export interface APIPlatformsResponse  extends APIResponse<Platform> {}
-
 class PlatformService {
     private url = "platforms";
 
     getAll = () => {
         return api
-            .get<APIPlatformsResponse>(this.url + "/lists/parents")
+            .get<APIResponse<Platform>>(this.url + "/lists/parents")
             .then((res) => res.data);
     };
 
